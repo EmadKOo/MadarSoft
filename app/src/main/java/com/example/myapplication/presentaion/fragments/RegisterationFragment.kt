@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.presentaion.viewmodel.UserViewModel
+import com.example.notes.R
 import com.example.notes.data.enums.UserGender
 import com.example.notes.databinding.FragmentRegisterationBinding
 import com.example.notes.domain.extensions.disable
@@ -48,27 +50,24 @@ class RegisterationFragment : Fragment() {
                 userViewModel.setUserAge(Integer.parseInt(text.toString()))
             }
 
+
             genderGroup.setOnCheckedChangeListener { _, checkedID ->
                 when (checkedID) {
-                    UserGender.MALE.ordinal -> userViewModel.setUserGender(UserGender.MALE)
-                    UserGender.FEMALE.ordinal -> userViewModel.setUserGender(UserGender.FEMALE)
+                    R.id.rdMale -> userViewModel.setUserGender(UserGender.MALE)
+                    R.id.rdFemale -> userViewModel.setUserGender(UserGender.FEMALE)
                 }
             }
 
             btnSave.setOnClickListener {
                 userViewModel.addUser()
+                findNavController().navigate(RegisterationFragmentDirections.actionRegisterationFragmentToUsersListFragment())
             }
         }
     }
 
     private fun initObservers() {
-        userViewModel.addUserLiveData.observe(viewLifecycleOwner) {
-
-        }
-
         userViewModel.newUserEnabled.observe(viewLifecycleOwner) {
             if (it) binding.btnSave.enable() else binding.btnSave.disable()
         }
     }
-
 }

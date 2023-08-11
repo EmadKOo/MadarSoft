@@ -10,4 +10,7 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="save">Save</string>
+    <string name="users">Users</string>
+    <string name="years_old">Years Old</string>
+    <string name="somethingWentWrong">Something went wrong.</string>
 </resources>

@@ -16,8 +16,7 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(private var userRepository: UserRepository) : ViewModel() {
 
     val usersLiveData = SingleLiveEvent<Resource<List<User>>>()
-    val addUserLiveData = SingleLiveEvent<Resource<Long>>()
-    val clearDBLiveData = SingleLiveEvent<Resource<Any>>()
+    private val addUserLiveData = SingleLiveEvent<Resource<Long>>()
     val newUserEnabled = SingleLiveEvent<Boolean>()
     private val newUserName = MutableLiveData<String>()
     private val newUserAge = MutableLiveData<String>()
@@ -27,6 +26,7 @@ class UserViewModel @Inject constructor(private var userRepository: UserReposito
 
     init {
         setNewUserButtonEnabled(false)
+        setUserGender(UserGender.MALE)
     }
 
 
@@ -56,15 +56,6 @@ class UserViewModel @Inject constructor(private var userRepository: UserReposito
             )
         } catch (ex: Exception) {
             addUserLiveData.postValue(Resource.Error(ex.message.toString()))
-        }
-    }
-
-    fun clearDB() = viewModelScope.launch {
-        try {
-            clearDBLiveData.postValue(Resource.Loading())
-            clearDBLiveData.postValue(Resource.Success(userRepository.clearUsers()))
-        } catch (ex: Exception) {
-            clearDBLiveData.postValue(Resource.Error(ex.localizedMessage))
         }
     }
 

@@ -9,5 +9,13 @@
         android:id="@+id/registerationFragment"
         android:name="com.example.myapplication.presentaion.fragments.RegisterationFragment"
         android:label="fragment_registeration"
-        tools:layout="@layout/fragment_registeration" />
+        tools:layout="@layout/fragment_registeration" >
+        <action
+            android:id="@+id/action_registerationFragment_to_usersListFragment"
+            app:destination="@id/usersListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/usersListFragment"
+        android:name="com.example.myapplication.presentaion.fragments.UsersListFragment"
+        android:label="UsersListFragment" />
 </navigation>

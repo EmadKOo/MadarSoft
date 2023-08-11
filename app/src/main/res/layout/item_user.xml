@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.example.notes.data.local.entity.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/ivUser"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:src="@drawable/undraw_male_avatar_g98d"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="@{user.userName}"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/ivUser"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="User Name" />
+
+        <TextView
+            android:id="@+id/tvUserJob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="@{user.job}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/ivUser"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+            tools:text="Engineer" />
+
+        <TextView
+            android:id="@+id/tvUserAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="@{String.valueOf(user.age) + ` ` + @string/years_old}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/ivUser"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserJob"
+            tools:text="19 Years Old" />
+
+        <TextView
+            android:id="@+id/tvUserGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="@{user.gender.name()}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/ivUser"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserAge"
+            tools:text="Male" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
